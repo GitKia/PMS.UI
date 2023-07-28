@@ -8,20 +8,20 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ProductsComponent {
   products: Product[] = [
-    {
-      id: '1111',
-      name: 'T-shirt',
-      type: 'Garments',
-      color: 'blue',
-      price: 9.99
-    },
-    {
-      id: '2222',
-      name: 'Samsung',
-      type: 'Mobile',
-      color: 'Black',
-      price: 1500
-    }
+    //{
+    //   id: '1111',
+    //   name: 'T-shirt',
+    //   type: 'Garments',
+    //   color: 'blue',
+    //   price: 9.99
+    // },
+    // {
+    //   id: '2222',
+    //   name: 'Samsung',
+    //   type: 'Mobile',
+    //   color: 'Black',
+    //   price: 1500
+    // }
   ];
 
 }
