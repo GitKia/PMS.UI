@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using PMS.API.Data;
 using PMS.API.Models;
 
@@ -44,7 +45,7 @@ namespace PMS.API.Controllers
     }
 
     [HttpPut]
-    [Route("{id:Guid}")] 
+    [Route("{id:Guid}")]
     public async Task<IActionResult> UpdateProduct([FromRoute] Guid id, Product updateProductRequest)
     {
       var product = await _pmsDbContext.Products.FindAsync(id);
@@ -57,6 +58,21 @@ namespace PMS.API.Controllers
       product.Color = updateProductRequest.Color;
       product.Price = updateProductRequest.Price;
 
+      await _pmsDbContext.SaveChangesAsync();
+
+      return Ok(product);
+    }
+
+    [HttpDelete]
+    [Route("{id:Guid}")]
+    public async Task<IActionResult> DeteleProduct(Guid id)
+    {
+      var product = await _pmsDbContext.Products.FindAsync(id);
+
+      if (product == null)
+        return NotFound(product);
+
+        _pmsDbContext.Products.Remove(product);
       await _pmsDbContext.SaveChangesAsync();
 
       return Ok(product);
