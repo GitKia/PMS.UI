@@ -42,5 +42,25 @@ namespace PMS.API.Controllers
 
       return Ok(product);
     }
+
+    [HttpPut]
+    [Route("{id:Guid}")] 
+    public async Task<IActionResult> UpdateProduct([FromRoute] Guid id, Product updateProductRequest)
+    {
+      var product = await _pmsDbContext.Products.FindAsync(id);
+
+      if (product == null)
+        return NotFound();
+
+      product.Name = updateProductRequest.Name;
+      product.Type = updateProductRequest.Type;
+      product.Color = updateProductRequest.Color;
+      product.Price = updateProductRequest.Price;
+
+      await _pmsDbContext.SaveChangesAsync();
+
+      return Ok(product);
+
+    }
   }
 }
