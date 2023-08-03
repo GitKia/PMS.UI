@@ -18,7 +18,7 @@
         <th>{{ product.color }}</th>
         <th>{{ product.price }}</th>
         <th><a [routerLink]="['/products','edit',product.id]">Edit</a></th>   
-        <td><a>Delete</a></td>
+        <td><a [routerLink]="[]" (click)="deleteProduct(product.id)">Delete</a></td>
       </tr>
     </tbody>
   </table>
